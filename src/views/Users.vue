@@ -23,6 +23,23 @@
 <script>
 export default {
   props: ["id"]
+  // ルートコンポーネントに指定できる３つのナビゲーションガード
+  // beforeRouteEnter (to, from, next) {
+  //   next(vm => {
+  //     console.log(vm.id);
+  //   });
+  // },
+  // beforeRouteUpdate (to, from, next) {
+  //   next()
+  // },
+  // beforeRouteLeave (to, from, next) {
+  //   const isLeave = window.confirm("本当にこのページを離れますか？");
+  //   if (isLeave) {
+  //     next();
+  //   } else {
+  //     next(false);
+  //   }
+  // }
   // watch: {
   //   $route(to, old) {
   //     console.log(to);//toは新しいrouteオブジェクト
