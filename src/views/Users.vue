@@ -10,10 +10,13 @@
     <!-- propsを指定する事で$route.params.idをidと書くことができ、ルートコンポーネントの再利用性を損なわないようにする -->
     <h1>User No.{{ id }}</h1>
     <!-- toはv-bind(:)を使うと動的に書ける -->
-    <router-link :to="'/users/' + (Number(id) + 1) + '/profile'">次のユーザー</router-link>
-    <!-- 名前付きルートを使って、わかりやすくリンク先のURLを動的にする -->
-    <router-link :to="{ name: 'users-id-profile', params: { id: Number(id) + 1} }">次のユーザー</router-link>
+    <router-link :to="'/users/' + (Number(id) + 1) + '/profile?lang=ja#next-user'">次のユーザー</router-link>
     <router-view></router-view>
+    <div style="height: 700px;"></div>
+    <!-- 名前付きルートを使って、わかりやすくリンク先のURLを動的にする -->
+    <!-- 特定のidを持つ要素までスクロールするために、URLにハッシュ(#)をつける -->
+    <router-link id="next-user" :to="{ name: 'users-id-profile', params: { id: Number(id) + 1}, query: { lang: 'ja', page: 2}, hash: '#next-user' }">次のユーザー</router-link>
+    <div style="height: 1400px;"></div>
   </div>
 </template>
 

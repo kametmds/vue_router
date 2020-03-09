@@ -1,17 +1,24 @@
 <template>
   <div class="div">
-    <nav>
-      <!-- aタグだとページ全体が読み込みされてしまう、けどHTMLではaタグになる、tag属性で他のに指定もできる-->
-      <!-- active-classはアクティブなコンポーネントにだけ適用し、exact属性を付けるとtoURLが完全一致したものだけに適用させる -->
-      <router-link to="/" active-class="link--active" exact class="link">Home</router-link>
-      <router-link to="/users" active-class="link--active" exact class="link">Users</router-link>
-    </nav>
     <!-- router-viewが動的コンポーネントの役割をする。つまりurlによってコンポーネントの内容を変えてくれている -->
-    <router-view></router-view>
+    <router-view name="header"></router-view>
+    <transition name="fade" mode="out-in">
+      <router-view></router-view>
+    </transition>
+    <!-- <router-view></router-view> -->
   </div>
 </template>
 
 <style scoped>
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity .5s;
+  }
   .div {
     width: 700px;
     margin: auto;
