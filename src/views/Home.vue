@@ -2,11 +2,37 @@
   <div>
     <h3>Home</h3>
     <button @click="toUsers">Userページにいく</button>
+    <p>{{ doubleCount }}</p>
+    <p>{{ tripleCount }}</p>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
+  // store.jsのstate(vuex)を撮ってくる場合はcomputedプロパティに書く
+  // mapGettersヘルパーで、効率よくgettersをコンポーネントに追加できる
+  computed: {
+    // スプレッド演算子を使うと算出プロパティに複数のゲッターを展開する事ができる。
+    ...mapGetters(["count", "doubleCount", "tripleCount"])
+  },
+  // ・オブジェクトでのmapGettersの書き方
+  // computed: mapGetters({
+  //   myComponentCount: "Count",
+  //   myComponentDoubleCount: "doubleCount",
+  //   myComponentTripleCount: "tripleCount"
+  // }),
+  // ・普通のGettersの書き方
+  // computed: {
+  //   count() {
+  //     // $storeのvuexの中のstateに書いてあるcountにアクセス
+  //     return this.$store.state.count;
+  //   },
+  //   doubleCount() {
+  //     // gettersを使って、ストアの算出プロパティを呼び出す
+  //     return this.$store.getters.doubleCount;
+  //   }
+  // },
   methods: {
     toUsers() {
       // jsからコンポーネントを切り替える。$routerにアクセスしてpathを指定している。

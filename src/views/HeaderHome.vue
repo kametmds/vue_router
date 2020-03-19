@@ -6,6 +6,22 @@
       <!-- active-classはアクティブなコンポーネントにだけ適用し、exact属性を付けるとtoURLが完全一致したものだけに適用させる -->
       <router-link to="/" active-class="link--active" exact class="link">Home</router-link>
       <router-link :to="{ name: 'users-id-profile', params: { id: 1}, query: { lang: 'ja', page: 2}, hash: '#next-user' }" active-class="link--active" exact class="link">Users</router-link>
+      <button @click="increment">+1</button>
+      <button @click="decrement">-1</button>
     </nav>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    // commitする事で$storeのvuexの中のmutationにデータを送る（データの予想と追跡をしやすくする為）
+    increment() {
+      this.$store.commit("increment", 2);
+    },
+    decrement() {
+      this.$store.commit("decrement", 2)
+    }
+  }
+}
+</script>
